@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    
+     <!-- <div class="row shadow p-3 mb-5 bg-body rounded m-2  bg-primary-subtle text-emphasis-primary"> -->
+     <div class="row shadow p-3 mb-5 bg-body rounded m-2  p-3 mb-2 bg-dark-subtle text-emphasis-dark">
+        <div class="col-lg-2  ">Doctor name</div>
+        <div class="col-lg-2 ">Mobile Number</div>
+        <div class="col-lg-2  "> Email</div>
+        <div class="col-lg-2  "> Appointment date</div>
+        <div class="col-lg-2  "> City</div>
+        <div class="col-lg-2 ">serial no</div>
+    </div>
+    {% for app in apps %}
+    <div class="row shadow p-3 mb-5 bg-body rounded m-2 bg-primary-subtle text-emphasis-primary">
+        <div class="col-lg-2 ">{{ app.doctor.first_name }} {{ app.doctor.last_name }}</div>
+        <div class="col-lg-2">{{ app.doctor.phone_number }}</div>
+        <div class="col-lg-2"> {{ app.doctor.user.email }}</div>
+        <div class="col-lg-2">{{ app.appointment_date }}</div>
+        <div class="col-lg-2"> {{ app.doctor.get_hospital_display }} {{ app.doctor.get_location_display }}</div>
+        <div class="col-lg-2">{{ app.serial }}</div>
+    </div>
+    {% endfor %} 
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+<!-- 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% for app in apps %}
+
+
+    {{ app.appointment_date }}
+    {{ app.reason }}
+
+    serial: {{ app.serial }}
+    {{ app.doctor.first_name }}
+
+{% endfor %} -->
+{% endblock %}

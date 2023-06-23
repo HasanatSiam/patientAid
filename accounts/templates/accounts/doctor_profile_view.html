@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 py-2 ">
+        <img class="img-fluid " src="{{ doctor.avatar.url }}" alt="" srcset="">
+    </div>
+    <div class="col-lg-6   px-3 py-2">
+        <h1>Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h1>
+        <p><b>Specialty:</b> {{ doctor.get_speciality_display }}</p>
+        <p><b>Experience:</b> {{ doctor.experience }} years</p>
+        <p><b>E-mail:</b> {{ request.user.email }}</p>
+        <p><b>Phone:</b> {{ doctor.phone_number }}</p>
+        <p><b>BMDC Number:</b> {{ doctor.bmdc_number }}</p>
+        <p><b>City:</b> {{ doctor.get_hospital_display }}</p>
+        <p><b>Hospitals:</b> {{ doctor.get_location_display }}</p>
+        
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row my-2">
+    <div class="col-lg-6 col-sm-12">
+      <h1>About {{ doctor.first_name }} {{ doctor.last_name}} </h1>
+      <p>{{ doctor.bio }}</p>
+    </div>
+    <div class="col-lg-6 col-sm-12 px-3">
+      <h1>At a Glance</h1>
+        <div class="const">
+        <p>Consultation Fee</p>
+        <p>&#2547;<b>{{ doctor.consultation_fee }}</b>(incl Vat)</p>
+      </div>
+        <div class="const">
+            <p>Patient atttended</p>
+            <p><b>23456</b></p>
+        </div>
+        <div class="const">
+            <p>Consultation time starts: 
+            <b>{{ doctor.consultation_time_end }}</b>
+            </p>
+        </div>
+      
+    
+        <div class="const">
+            <p>Consultation time ends</p>
+            <p><b>{{ doctor.consultation_time_end }}</b></p>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<div class="inner-layer">
+<div class="container ">
+  <div class="row no-margin">
+    <div class="col-sm-12 col-lg-6 py-2 ">
+      <div class="content">
+        <h1>Location</h1>
+        {% if doctor.location == 'popular' %}
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.219570418666!2d90.37959757418922!3d23.739548289195042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8ca7af5f82b%3A0xce7d1ab6b16a027!2sPopular%20Diagnostic%20Centre%20Ltd.!5e0!3m2!1sen!2sbd!4v1687043860597!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      {% endif %}
+  </div>
+    </div>
+    <div class="col-sm-12 col-lg-6  ">
+      <div class="row form-row">
+        <a href="{% url 'doctor-update' %}">
+        <button class="btn btn-success btn-appointment">
+          Edit profile
+        </button>
+        </a>
+      </div>
+    <!-- <div class="col-sm-12 col-lg-6  ">
+    <div class="form-data">
+      <div class="form-head">
+            <h2>Book Appointment</h2>
+      </div>
+      <div class="form-body">
+        <div class="row form-row">
+          <input type="text" placeholder="Enter Full name" class="form-control">
+        </div>
+        <div class="row form-row my-1">
+          <input type="text" placeholder="Enter Mobile number" class="form-control">
+        </div>
+        <div class="row form-row my-1">
+          <input type="text" placeholder="Enter Email number" class="form-control">
+        </div>
+        <div class="row form-row my-1">
+          <input type="text" placeholder="Enter Full name" class="form-control">
+        </div>
+        <div class="row form-row">
+          <input id="date" type="text" placeholder="Appoinment date" class="form-control">
+        </div>
+        <h6>Address Details</h6>
+        <div class="row form-row my-2">
+         <div class="col-sm-6">
+          <input type="text" placeholder="Enter Area" class="form-control">
+         </div>
+         <div class="col-sm-6">
+          <input type="text" placeholder="Enter City" class="form-control">
+         </div>
+        </div>
+        <div class="row form-row my-1">
+          <div class="col-sm-6">
+           <input type="text" placeholder="Enter State" class="form-control">
+          </div>
+          <div class="col-sm-6">
+           <input type="text" placeholder="Postal Code" class="form-control">
+          </div>
+        </div>
+
+        <div class="row form-row">
+          <button class="btn btn-success btn-appointment">
+            Book Appoinment
+          </button>
+        </div>
+    </div>
+      </div>
+    </div> -->
+  </div>
+ </div>
+</div>
+
+{% endblock %}

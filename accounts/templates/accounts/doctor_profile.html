@@ -1,0 +1,276 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Doctor Profile</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="email"],
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+      .form-group input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          max-width: 100%;
+        }
+      }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      var hospitalObject = {
+        Dhaka: {
+          "Square Hospital": [""],
+          "Popular Diagnostic Centre Ltd": [""],
+          "Labaid Hospital": [""],
+          "Ibn Sina Specialized Hospital": [""],
+          "Evercare Hopital": [""],
+        },
+        Chittagong: {
+          "National Hospital": [""],
+          "Evercare Hopital": [""],
+          "Islami Bank Hospital": [""],
+          "Memon Maternity Hospital": [""],
+          "Chittagong Medical College Hospital": [""],
+        },
+      };
+      window.onload = function () {
+        var hospitalSel = document.getElementById("hospital");
+        var citySel = document.getElementById("location");
+        for (var x in hospitalObject) {
+          hospitalSel.options[hospitalSel.options.length] = new Option(x, x);
+        }
+        hospitalSel.onchange = function () {
+          //empty Chapters- and Topics- dropdowns
+          citySel.length = 1;
+          //display correct values
+          for (var y in hospitalObject[this.value]) {
+            citySel.options[citySel.options.length] = new Option(y, y);
+          }
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Edit Doctor Profile</h2>
+      <form id="doctor-registration-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="first_name">First Nname:</label>
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            value="{{doctor.first_name}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="full-name">Last Name:</label>
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            value="{{doctor.last_name}}"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="speciality">Specialty:</label>
+          <select id="speciality" name="speciality" required>
+            <!-- <option value="{{doctor.speciality}}">{{doctor.get_speciality_}}</option> -->
+            <option value="gen-phy">General Physician</option>
+            <option value="derma">Dermatology</option>
+            <option value="Pediatrics">Pediatrics</option>
+            <option value="gynecology">Gynecology</option>
+            <option value="ophthalmology">Ophthalmology</option>
+            <option value="neurology">Neurology</option>
+            <option value="psychology">Psychology</option>
+            <option value="orthopedics">Orthopedics</option>
+            <option value="gastroenterology">Gastroenterology</option>
+            <option value="cardiology">Cardiology</option>
+            <option value="ent">ENT</option>
+            <option value="dentist">Dentistry</option>
+            <!-- Add more specialty options here -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="experience">Years of Experience:</label>
+          <input
+            type="number"
+            id="experience"
+            name="experience"
+            value="{{ doctor.experience }}"
+          />
+        </div>
+
+        <!-- <div class="form-group">
+          <label for="lenght-of-work">Lenght of Work:</label>
+          <input type="number" id="experience" name="experience" required />
+        </div> -->
+
+        <!-- <div class="form-group">
+          <label for="email">Email Address:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter Your Email Address"
+            required
+          />
+        </div> -->
+
+        <div class="form-group">
+          <label for="phone_number">Phone Number:</label>
+          <input
+            type="text"
+            id="phone_number"
+            name="phone_number"
+            value="{{doctor.phone_number}}"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="bmdc_number">BMDC Number:</label>
+          <input
+            type="text"
+            id="bmdc_number"
+            name="bmdc_number"
+            value="{{doctor.bmdc_number}}"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="avatar" class="form-label">Profile Picture:</label>
+          <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            class="form-control"
+            accept="image/*"
+            value="{{doctor.avatar.url}}"
+          />
+          <div class="avatar-preview">
+            <img
+              id="avatar-preview"
+              src="#"
+              alt="Profile Picture Preview"
+              style="display: none"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="hospitals">Hospitals:</label>
+          <!-- <form name="form1" id="form1" action="/action_page.php"> -->
+            <select name="hospital" id="hospital">
+              <!-- <select name="location" id="location"> -->
+              <option value="{{doctor.hospital}}" selected="selected">Select City</option>
+            </select>
+            <br /><br />
+            <select name="location" id="location">
+              <!-- <select name="hospital" id="hospital"> -->
+              <option value="{{doctor.location}}" selected="selected">
+                Please select Hospital
+              </option>
+            </select>
+            <br /><br />
+          <!-- </form> -->
+        </div>
+
+        <div class="form-group">
+          <label for="about">About:</label>
+          <textarea
+            id="bio"
+            name="bio"
+            rows="10"
+            cols="65"
+            value="{{doctor.bio}}"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="consultation_fee">Consultation Fee:</label>
+          <input
+            type="number"
+            id="consultation_fee"
+            name="consultation_fee"
+            value="{{doctor.consultation_fee}}"
+            placeholder="Enter the consultation fee"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="consultation_time_start">Consultation Time Starts:</label>
+          <input
+            type="time"
+            id="consultation_time_start"
+            value="{{doctor.consultation_time_start}}"
+            name="consultation_time_start"
+            
+            
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="consultation_time_end">Consultation Time ends:</label>
+          <input
+            type="time"
+            id="consultation_time_end"
+            name="consultation_time_end"
+            value="{{doctor.consultation_time_end}}"
+          />
+        </div>
+
+        <div class="form-group">
+          <!-- <input type="submit" value="Register" /> -->
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+
+{% endblock %}

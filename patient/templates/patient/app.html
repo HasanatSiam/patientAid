@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-lg-6 py-2 ">
+        <img class="img-fluid " src="{% static '/images/Dr.anna.webp' %}" alt="" srcset="">
+    </div>
+    <div class="col-lg-6   px-3 py-2">
+        <h1>Dr. Anna Majumder</h1>
+        <p><b>Specialty:</b> {{doc.speciality}}</p>
+        <p><b>Experience:</b> {{doc.experience}} years</p>
+        <p><b>Length of work:</b> Since 2014</p>
+        <p><b>E-mail:</b> {{request.user.email}}</p>
+        <p><b>Phone:</b> {{doc.phone_number}}</p>
+        <p><b>BMDC Number:</b> {{doc.bmdc_number}}</p>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="row my-2">
+    <!-- <div class="col-lg-6 col-sm-12">
+      <h1>About {{ doc.first_name }} </h1>
+      <p><button><a href="/doctor/like/{{doc.user.id}}">Like {{ doc.like_count }}</a></button>
+        <button>Disike {{ doc.dislike_count }}</button>
+      </p>
+      <p>{{doc.bio}}</p>
+    </div> -->
+    <div class="col-lg-6 col-sm-12 px-3">
+      <h1>At a Glance</h1>
+      <h2>Dr. {{ doc.first_name }} {{ doc.last_name }}</h2>
+      
+      
+        <div class="const">
+        <p>Consultation Fee</p>
+        <p>&#2547;<b>{{doc.consultation_fee}}</b>(incl Vat)</p>
+      </div>
+        <!-- <div class="const">
+            <p>Patient atttended</p>
+            <p><b>23456</b></p>
+        </div> -->
+        <div class="const">
+            <p>Consultation time</p>
+            <p><b>{{doc.consultation_time_start}} - {{doc.consultation_time_end}}</b></p>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<div class="inner-layer">
+<div class="container ">
+  <div class="row no-margin">
+    <div class="col-sm-12 col-lg-6 py-2 ">
+      Appoinment starts from 10:00 AM to 04:00 PM: {{ doc.consultation_time_start }}
+    </div>
+    <div class="col-sm-12 col-lg-6  ">
+
+      {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-data">
+
+
+          <div class="form-head">
+                <h2>Book Appointment</h2>
+          </div>
+          <div class="form-body">
+            <div class="row form-row">
+              <!-- <input type="text" placeholder="Enter Full name" class="form-control">
+               -->
+               <label for="appointment_date">Appointment Date and Time:</label>
+               <input type="date" id="appointment_date" name="appointment_date">
+            </div>
+            <div class="row form-row my-1">
+              <input type="text" placeholder="Enter Mobile number" class="form-control">
+            </div>
+
+            <div class="row form-row my-1">
+              <textarea type="text" name="reason" placeholder="State your reason for your appointment" class="form-control"></textarea>
+            </div>
+            <div class="row form-row">
+              <button class="btn btn-success btn-appointment" type="submit">
+                Book Appoinment
+              </button>
+            </div>
+        </div>
+          </div>
+      </form>
+    </div>
+  </div>
+ </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 py-2 ">
+        <img class="img-fluid " src="{% static '/images/Dr.anna.webp' %}" alt="" srcset="">
+    </div>
+    <div class="col-lg-6   px-3 py-2">
+        <h1>Dr. Anna Majumder</h1>
+        <p><b>Specialty:</b> Cardiologist</p>
+        <p><b>Experience:</b> 4 years</p>
+        <p><b>Length of work:</b> Since 2014</p>
+        <p><b>E-mail:</b> anna.doc@gmail.com</p>
+        <p><b>Phone:</b> 507-804-6798</p>
+        <p><b>BMDC Number:</b> 103280</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row my-2">
+    <div class="col-lg-6 col-sm-12">
+      <h1>About Dr.Anna Majumder</h1>
+      <p>MBBS(Chittagong Medical college),BCS(Health),FCPS(Final Part medicine),PGT(Medicine),CCD(Birdem)MCGP(Pediatrics)REG(2103046002)
+        Medical Officer:Upazila Health complex,Farodganj
+      ,Chandpur Ex-Mo:Imperial Hospital(Covid ICU),Chittagong Ex-Mo:CSCR Hospital,Chittagong Ex-M0:Surgiscope Hospital(Nicu),
+        Chittagong Ex-Emo:Mirosarai Seba Hospital,Chittagong
+      </p>
+    </div>
+    <div class="col-lg-6 col-sm-12 px-3">
+      <h1>At a Glance</h1>
+        <div class="const">
+        <p>Consultation Fee</p>
+        <p>&#2547;<b>210</b>(incl Vat)</p>
+      </div>
+        <div class="const">
+            <p>Patient atttended</p>
+            <p><b>23456</b></p>
+        </div>
+        <div class="const">
+            <p>Consultation time</p>
+            <p><b>11:50 am- 11:50pm</b></p>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<div class="inner-layer">
+<div class="container ">
+  <div class="row no-margin">
+    <div class="col-sm-12 col-lg-6 py-2 ">
+      <div class="content">
+            <h1>Book You Time slot now and save your time</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error veritatis, rerum sunt reprehenderit itaque perferendis     nihil! Accusantium labore neque tenetur accusamus magnam unde quaerat architecto quia quo, sed ad vero explicabo reprehenderit, nostrum aut quisquam facere ullam necessitatibus veniam. Ratione veritatis consequuntur quae ab nam odit labore inventore qui sit.</p>
+      </div>
+    </div>
+    <div class="col-sm-12 col-lg-6  ">
+    <div class="form-data">
+      <div class="form-head">
+            <h2>Book Appointment</h2>
+      </div>
+      <div class="form-body">
+        <div class="row form-row">
+          <input type="text" placeholder="Enter Full name" class="form-control">
+        </div>
+        <div class="row form-row my-1">
+          <input type="text" placeholder="Enter Mobile number" class="form-control">
+        </div>
+        <div class="row form-row my-1">
+          <input type="text" placeholder="Enter Email number" class="form-control">
+        </div>
+        <div class="row form-row my-1">
+          <input type="text" placeholder="Enter Full name" class="form-control">
+        </div>
+        <div class="row form-row">
+          <input id="date" type="text" placeholder="Appoinment date" class="form-control">
+        </div>
+        <h6>Address Details</h6>
+        <div class="row form-row my-2">
+         <div class="col-sm-6">
+          <input type="text" placeholder="Enter Area" class="form-control">
+         </div>
+         <div class="col-sm-6">
+          <input type="text" placeholder="Enter City" class="form-control">
+         </div>
+        </div>
+        <div class="row form-row my-1">
+          <div class="col-sm-6">
+           <input type="text" placeholder="Enter State" class="form-control">
+          </div>
+          <div class="col-sm-6">
+           <input type="text" placeholder="Postal Code" class="form-control">
+          </div>
+        </div>
+
+        <div class="row form-row">
+          <button class="btn btn-success btn-appointment">
+            Book Appoinment
+          </button>
+        </div>
+    </div>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+
+{% endblock %}

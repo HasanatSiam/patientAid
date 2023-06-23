@@ -1,0 +1,74 @@
+#welcome-text{
+    text-align: center;
+    color: aqua;
+}
+
+.doc-caro .carousel-item{
+    background-color: lightgoldenrodyellow;
+    border-radius: 5px;
+}
+
+img{
+    width: 100%;
+    height: 50%;
+}
+
+/*map*/
+
+#map {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio (change this value if needed) */
+    position: relative;
+  }
+  
+  #map iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+   .location{
+    color: aqua;
+
+  }
+
+  /*footer*/
+
+  footer {
+    background-color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .social-icons img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .navigation-links a {
+    margin-right: 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navigation-links a:hover {
+    color: #000;
+  }
+
+  .foot{
+    height: 100px;
+  }
+  
+  
+ 
+  
+  
+
+
+
+  
